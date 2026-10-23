@@ -3,6 +3,19 @@
 Toutes les modifications notables de ce projet sont documentées dans ce fichier.
 Le format s'inspire de *Keep a Changelog* ; le versionnage suit SemVer.
 
+## [1.2.0] — 2026-10-23
+
+### Ajouté
+
+- Publication de **deux présentations** du même contenu : version cinématographique 3D à la racine, version sobre dans `v1/`.
+- `README.md` : documentation du dépôt, des deux versions et des choix techniques.
+- Liens croisés discrets entre les deux versions.
+
+### Vérifié
+
+- Contenu textuel identique entre les deux versions.
+- Aucune donnée privée, aucun débordement horizontal, liens externes en HTTP 200.
+
 ## [1.1.0] — 2026-10-23
 
 ### Modifié
