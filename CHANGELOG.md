@@ -3,6 +3,19 @@
 Toutes les modifications notables de ce projet sont documentées dans ce fichier.
 Le format s'inspire de *Keep a Changelog* ; le versionnage suit SemVer.
 
+## [1.1.0] — 2026-10-23
+
+### Modifié
+
+- Refonte de la présentation : le parcours est désormais présenté comme un **relevé de service**, avec une chronologie à barres sur un axe 2011–2026 (bande sombre), au lieu d'une liste de blocs datés.
+- Sections numérotées (01–07) et libellés en monospace.
+- Bandeau technique en tête de page.
+
+### Inchangé
+
+- **Contenu textuel intégralement préservé** : chaque phrase, intitulé, date et description de la version 1.0 est reprise mot pour mot (vérifié par comparaison automatique des nœuds de texte).
+- Aucun fait ajouté, aucune donnée privée.
+
 ## [1.0.0] — 2026-10-23
 
 ### Ajouté

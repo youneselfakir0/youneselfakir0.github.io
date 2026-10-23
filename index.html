@@ -26,39 +26,46 @@
 </script>
 <!--
 DIRECTION CONTRACT
-THESIS: A professional dossier, not a marketing landing page. It refuses the category default (coloured hero band plus icon cards) and lets the record carry the weight.
-OWN-WORLD: Cool paper ground with near-black ink, hairline rules, one restrained steel-blue accent. A serif name, a system sans for reading, monospace kept for metadata labels and dates only.
-STORY: A recruiter learns who this is, what he has done, and what he can prove — then contacts him.
-FIRST VIEWPORT: Name at display scale, the exact title beneath it, a compact metadata block (location, courriel, GitHub, LinkedIn) flush left. No hero image, no call-to-action button.
-FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; staging: single-column record, mobile first.
+THESIS: The career read as a monitored service record. It refuses the category default (a reverse-chronological list of dated blocks) and puts the span itself on an instrument panel, so the timeline is the argument.
+OWN-WORLD: Cool instrument grey with a dark console band carrying an etched graticule, monospace metrics and signal-blue service bars; the light sections below stay quiet so the panel is the one loud thing.
+STORY: A recruiter sees continuity, overlap and gaps at a glance, then reads the detail under the same headings.
+FIRST VIEWPORT: Name at display scale, the exact title, contact rail with icons, then the console panel opens with the service spans already drawn.
+FORM: Supervisory console; grounded direction 4; seed key d80eb4eb; staging: single-column record with one full-bleed dark panel, mobile first.
 -->
 <style>
   :root{
-    --paper:#f4f5f7;
-    --card:#ffffff;
-    --ink:#11151a;
-    --ink-2:#464f5a;
-    --ink-3:#5c6673;
-    --rule:#dde1e7;
-    --rule-2:#eaedf1;
-    --accent:#2b5c8a;
-    --accent-soft:#edf2f7;
+    --bg:#eceef1;
+    --panel:#ffffff;
+    --ink:#0e1216;
+    --ink-2:#454e59;
+    --ink-3:#5b6570;
+    --rule:#d9dee4;
+    --rule-2:#e7eaee;
+    --accent:#2f6fed;
+    --accent-soft:#eaf1fd;
+
+    --con:#0d1117;
+    --con-2:#161b22;
+    --con-ink:#c9d1d9;
+    --con-dim:#8b949e;
+    --con-line:#232a33;
+    --sig:#4d9cf6;
+    --sig-2:#3fb950;
 
     --font-display: Constantia, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-    --measure: 46rem;
+    --measure: 47rem;
     --pad: 1.35rem;
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
-
   html{ -webkit-text-size-adjust:100%; }
 
   body{
     margin:0;
-    background:var(--paper);
+    background:var(--bg);
     color:var(--ink);
     font-family:var(--font-sans);
     font-size:1rem;
@@ -73,20 +80,37 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
 
   .wrap{ max-width:var(--measure); margin-inline:auto; padding:0 var(--pad); }
 
+  /* ---------- Bandeau technique ---------- */
+
+  .chrome{
+    background:var(--con);
+    color:var(--con-dim);
+    font-family:var(--font-mono);
+    font-size:.6875rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:.6rem 0;
+  }
+  .chrome .wrap{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }
+  .chrome .dot{
+    width:.5rem; height:.5rem; border-radius:50%;
+    background:var(--sig-2);
+    box-shadow:0 0 0 3px rgba(63,185,80,.18);
+    flex:none;
+  }
+  .chrome .rail{ margin-left:auto; opacity:.75; }
+
   /* ---------- En-tête ---------- */
 
-  .topline{ height:3px; background:var(--accent); }
-
-  header{ background:var(--card); border-bottom:1px solid var(--rule); }
-
-  .masthead{ padding-block:2.5rem 2rem; }
+  header{ background:var(--panel); border-bottom:1px solid var(--rule); }
+  .masthead{ padding-block:2.6rem 2rem; }
 
   h1{
     font-family:var(--font-display);
     font-weight:600;
-    font-size:clamp(2rem, 8vw, 2.75rem);
-    line-height:1.06;
-    letter-spacing:-.018em;
+    font-size:clamp(2.05rem, 8.4vw, 2.9rem);
+    line-height:1.04;
+    letter-spacing:-.02em;
     margin:0 0 .6rem;
     text-wrap:balance;
   }
@@ -96,7 +120,7 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
     line-height:1.5;
     color:var(--ink-2);
     margin:0 0 1.6rem;
-    max-width:38rem;
+    max-width:39rem;
     text-wrap:pretty;
   }
   .role .sep{ color:var(--ink-3); padding:0 .1em; }
@@ -122,17 +146,97 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
     margin-bottom:.2rem;
   }
   .meta dd{ margin:0; font-size:.9375rem; overflow-wrap:anywhere; }
-  .meta dd a, .meta dd .val{
-    display:inline-flex;
-    align-items:center;
-    gap:.45rem;
-    max-width:100%;
-  }
+  .meta dd a, .meta dd .val{ display:inline-flex; align-items:center; gap:.45rem; max-width:100%; }
   .ico{ flex:none; width:15px; height:15px; }
   .meta dd .val .ico{ color:var(--ink-3); }
   .meta dd a .ico{ color:var(--accent); }
 
-  /* ---------- Sections ---------- */
+  /* ---------- Console (parcours) ---------- */
+
+  .console{
+    background:var(--con);
+    color:var(--con-ink);
+    padding-block:2.5rem 2.75rem;
+    background-image:repeating-linear-gradient(90deg, var(--con-line) 0 1px, transparent 1px 10%);
+    background-position:0 0;
+  }
+  .console h2{ color:var(--con-dim); }
+
+  .axis{
+    position:relative;
+    height:1.6rem;
+    margin-bottom:.4rem;
+    border-bottom:1px solid var(--con-line);
+  }
+  .axis span{
+    position:absolute;
+    bottom:.35rem;
+    transform:translateX(-50%);
+    font-family:var(--font-mono);
+    font-size:.6875rem;
+    letter-spacing:.04em;
+    color:var(--con-dim);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .axis span:first-child{ transform:none; }
+  .axis span:last-child{ transform:translateX(-100%); }
+
+  .tl{ display:grid; gap:1.1rem; margin-top:1.1rem; }
+
+  .tl-row{ display:grid; gap:.4rem; }
+  .tl-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:.15rem 1rem;
+  }
+  .tl-name{ font-size:.9375rem; font-weight:600; color:#e6edf3; }
+  .tl-when{
+    font-family:var(--font-mono);
+    font-size:.6875rem;
+    letter-spacing:.03em;
+    color:var(--con-dim);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+
+  .track{
+    position:relative;
+    height:1.35rem;
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--con-line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .track::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 10%);
+    pointer-events:none;
+  }
+  .bar{
+    position:absolute;
+    top:2px; bottom:2px;
+    border-radius:2px;
+    background:linear-gradient(180deg, var(--sig), #2f6fed);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28);
+  }
+  .bar.alt{
+    background:linear-gradient(180deg, #6f7783, #4b535e);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  }
+
+  .tl-note{
+    margin:1.35rem 0 0;
+    font-family:var(--font-mono);
+    font-size:.6875rem;
+    letter-spacing:.05em;
+    color:var(--con-dim);
+  }
+
+  /* ---------- Sections claires ---------- */
 
   main{ padding-block:2.75rem 0; }
 
@@ -140,6 +244,9 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
   section + section{ border-top:1px solid var(--rule-2); margin-top:2rem; }
 
   h2{
+    display:flex;
+    align-items:baseline;
+    gap:.7rem;
     font-family:var(--font-mono);
     font-size:.75rem;
     font-weight:600;
@@ -148,8 +255,20 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
     color:var(--ink-3);
     margin:0 0 1.35rem;
   }
+  h2 .idx{
+    font-size:.6875rem;
+    color:var(--accent);
+    letter-spacing:.06em;
+  }
+  h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--rule);
+    transform:translateY(-.15em);
+  }
 
-  p{ margin:0 0 1rem; max-width:38rem; text-wrap:pretty; }
+  p{ margin:0 0 1rem; max-width:39rem; text-wrap:pretty; }
   p:last-child{ margin-bottom:0; }
 
   /* ---------- Compétences ---------- */
@@ -165,22 +284,15 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
   }
   .skills dt{ font-weight:600; font-size:.9375rem; }
   .skills dd{ margin:0; font-size:.9375rem; color:var(--ink-2); line-height:1.55; }
-  @media (max-width:41.99rem){
-    .skills dt{ margin-bottom:.2rem; }
-  }
+  @media (max-width:41.99rem){ .skills dt{ margin-bottom:.2rem; } }
 
   /* ---------- Expérience ---------- */
 
   .entry{ margin-bottom:2.1rem; }
   .entry:last-child{ margin-bottom:0; }
-
   .entry-head{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:.15rem 1rem;
-    margin-bottom:.2rem;
+    display:flex; flex-wrap:wrap; align-items:baseline;
+    justify-content:space-between; gap:.15rem 1rem; margin-bottom:.2rem;
   }
   .entry-title{ font-size:1.0625rem; font-weight:600; margin:0; line-height:1.35; }
   .entry-when{
@@ -206,24 +318,21 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
   ul li::before{
     content:"";
     position:absolute;
-    left:.15rem;
-    top:.63em;
-    width:.3rem;
-    height:.3rem;
+    left:.15rem; top:.63em;
+    width:.3rem; height:.3rem;
     border-radius:50%;
-    background:var(--card);
+    background:var(--panel);
     box-shadow:inset 0 0 0 1px var(--ink-3);
   }
 
   /* ---------- Preuve ---------- */
 
   .proof{
-    background:var(--accent-soft);
+    background:var(--panel);
     border:1px solid var(--rule);
     border-radius:4px;
     padding:1.35rem 1.4rem;
   }
-  .proof p{ margin-bottom:.9rem; }
   .proof .marker{
     display:inline-flex;
     align-items:center;
@@ -233,30 +342,26 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
     letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--accent);
-    margin-bottom:.6rem;
+    margin-bottom:.7rem;
   }
   .proof .marker::before{
     content:"";
-    width:.45rem; height:.45rem;
-    border-radius:50%;
+    width:.45rem; height:.45rem; border-radius:50%;
     background:var(--accent);
   }
+  .proof p{ margin-bottom:.9rem; }
   .proof .linkline{ margin:0; font-size:.9375rem; }
 
   /* ---------- Disponibilité ---------- */
 
-  .availability{ font-size:1.0625rem; line-height:1.6; max-width:38rem; }
+  .availability{ font-size:1.0625rem; line-height:1.6; max-width:39rem; }
   .availability strong{ font-weight:600; }
 
   .langues{
-    display:flex;
-    flex-wrap:wrap;
-    gap:.45rem 1.1rem;
-    margin-top:1.2rem;
-    padding-top:1.1rem;
+    display:flex; flex-wrap:wrap; gap:.45rem 1.1rem;
+    margin-top:1.2rem; padding-top:1.1rem;
     border-top:1px solid var(--rule-2);
-    font-size:.9375rem;
-    color:var(--ink-2);
+    font-size:.9375rem; color:var(--ink-2);
   }
   .langues span{ display:inline-flex; gap:.4rem; }
   .langues b{ font-weight:600; color:var(--ink); }
@@ -273,7 +378,16 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
 
   @media print{
     body{ background:#fff; font-size:11pt; }
-    .topline{ display:none; }
+    .chrome{ display:none; }
+    .console{ background:#fff; color:var(--ink); background-image:none; padding-block:1rem; }
+    .console h2{ color:var(--ink-3); }
+    .axis{ border-bottom-color:var(--rule); }
+    .axis span{ color:var(--ink-3); }
+    .tl-name{ color:var(--ink); }
+    .tl-when, .tl-note{ color:var(--ink-3); }
+    .track{ background:#f2f4f6; border-color:var(--rule); }
+    .track::after{ display:none; }
+    .bar{ background:#9fb4d8; box-shadow:none; }
     header, .proof{ background:#fff; }
     a{ color:var(--ink); text-decoration:none; }
     main{ padding-top:1.25rem; }
@@ -283,7 +397,14 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
 </style>
 </head>
 <body>
-<div class="topline"></div>
+
+<div class="chrome">
+  <div class="wrap">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Relevé de service</span>
+    <span class="rail">2011 — 2026</span>
+  </div>
+</div>
 
 <header>
   <div class="wrap masthead">
@@ -310,115 +431,159 @@ FORM: Documentation-standard dossier; grounded direction 3; seed key b85fe193; s
   </div>
 </header>
 
-<main class="wrap">
+<main>
 
-  <section>
-    <h2>Profil</h2>
-    <p>Technicien en soutien informatique bilingue (français/anglais) fort de plus de 13 ans d'expérience en assistance aux utilisateurs et en gestion des incidents. De novembre 2022 à juin 2025, agent de centre de services senior chez Services partagés Canada, dans un environnement gouvernemental critique fonctionnant 24/7/365.</p>
-    <p>Rigueur opérationnelle, résolution de problèmes et orientation client. Intègre l'IA à sa pratique quotidienne du support (diagnostic, génération de scripts, documentation d'intervention) pour accélérer la résolution des incidents.</p>
-  </section>
+  <section class="console">
+    <div class="wrap">
+      <h2><span class="idx">01</span>Expérience</h2>
 
-  <section>
-    <h2>Compétences</h2>
-    <dl class="skills">
-      <dt>Support et incidents</dt>
-      <dd>Support bilingue (fr/en), résolution d'incidents N1/N2, billetterie, respect des SLA, escalade et documentation, environnements 24/7/365.</dd>
-      <dt>Systèmes</dt>
-      <dd>Windows et Windows Server, Active Directory, DNS, stratégies de groupe (GPO), Linux, macOS.</dd>
-      <dt>Collaboration</dt>
-      <dd>Microsoft 365 et Exchange (messagerie, calendriers, partage de fichiers, gestion des accès et des identités).</dd>
-      <dt>Réseaux</dt>
-      <dd>TCP/IP, DNS, VPN, connectivité réseau et périphériques d'impression.</dd>
-      <dt>Scripting</dt>
-      <dd>PowerShell et Bash : automatisation des tâches récurrentes et des interventions de support.</dd>
-      <dt>Virtualisation et conteneurs</dt>
-      <dd>Machines virtuelles et services conteneurisés, en laboratoire comme en production.</dd>
-      <dt>Supervision et documentation</dt>
-      <dd>Suivi d'incidents, rédaction et mise à jour de la documentation technique d'intervention.</dd>
-    </dl>
-  </section>
-
-  <section>
-    <h2>Expérience</h2>
-
-    <article class="entry">
-      <div class="entry-head">
-        <h3 class="entry-title">Agent de centre de services — Senior (N1/N2)</h3>
-        <span class="entry-when">nov. 2022 — juin 2025</span>
+      <div class="axis" aria-hidden="true">
+        <span style="left:0%">2011</span>
+        <span style="left:20%">2014</span>
+        <span style="left:40%">2017</span>
+        <span style="left:60%">2020</span>
+        <span style="left:80%">2023</span>
+        <span style="left:100%">2026</span>
       </div>
-      <p class="entry-org">Newfound Recruiting — mandat Services partagés Canada (gouvernement fédéral) · Montréal, QC</p>
-      <ul>
-        <li>Soutien technique bilingue (français/anglais) dans un centre de services gouvernemental à haute disponibilité, en fonctionnement continu 24/7/365.</li>
-        <li>Traitement et résolution d'incidents (postes de travail, gestion des accès, Microsoft 365, VPN, matériel et connectivité) dans le strict respect des SLA et des objectifs de performance.</li>
-        <li>Application rigoureuse des procédures opérationnelles et des politiques de sécurité informatique en contexte gouvernemental critique.</li>
-        <li>Rédaction et mise à jour de la documentation technique d'intervention, au bénéfice de la continuité des opérations de l'équipe.</li>
-      </ul>
-    </article>
 
-    <article class="entry">
-      <div class="entry-head">
-        <h3 class="entry-title">Technicien informatique — mandats indépendants</h3>
-        <span class="entry-when">2011 — 2021</span>
-      </div>
-      <p class="entry-org">PME et particuliers · Montréal, QC</p>
-      <ul>
-        <li>Installation, configuration, optimisation et maintien du parc informatique (postes Windows, macOS et Linux) d'une clientèle diversifiée de PME et de particuliers.</li>
-        <li>Diagnostic et résolution des pannes matérielles, logicielles et réseau, contribuant à réduire les temps d'interruption des clients.</li>
-        <li>Déploiement de postes de travail, configuration des équipements réseau et d'impression, soutien technique à distance et sur site.</li>
-        <li>Formation des utilisateurs aux bonnes pratiques de sécurité ; gestion des sauvegardes et de la récupération de données.</li>
-      </ul>
-    </article>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-head">
+            <span class="tl-name">Agent de centre de services — Senior (N1/N2)</span>
+            <span class="tl-when">nov. 2022 — juin 2025</span>
+          </div>
+          <div class="track"><span class="bar" style="left:78.9%;width:17.5%"></span></div>
+        </div>
 
-    <article class="entry">
-      <div class="entry-head">
-        <h3 class="entry-title">Agent de soutien technique</h3>
-        <span class="entry-when">2014 — 2015</span>
-      </div>
-      <p class="entry-org">Bell Affaires / Atelka Inc. · Saint-Jean-sur-Richelieu, QC</p>
-      <ul>
-        <li>Soutien technique téléphonique auprès de la clientèle d'affaires pour les services Internet et de téléphonie.</li>
-        <li>Diagnostic à distance des défaillances de connectivité réseau et accompagnement des utilisateurs, étape par étape, jusqu'à la résolution.</li>
-        <li>Configuration des équipements d'accès (modems, routeurs) et escalade des dossiers complexes vers les niveaux spécialisés.</li>
-      </ul>
-    </article>
-  </section>
+        <div class="tl-row">
+          <div class="tl-head">
+            <span class="tl-name">Technicien informatique — mandats indépendants</span>
+            <span class="tl-when">2011 — 2021</span>
+          </div>
+          <div class="track"><span class="bar" style="left:0%;width:66.7%"></span></div>
+        </div>
 
-  <section>
-    <h2>Formation</h2>
-    <article class="entry">
-      <div class="entry-head">
-        <h3 class="entry-title">DEP en soutien informatique</h3>
-        <span class="entry-when">2014</span>
+        <div class="tl-row">
+          <div class="tl-head">
+            <span class="tl-name">Agent de soutien technique</span>
+            <span class="tl-when">2014 — 2015</span>
+          </div>
+          <div class="track"><span class="bar alt" style="left:20%;width:6.7%"></span></div>
+        </div>
       </div>
-      <p class="entry-org">Centre de formation professionnelle des Patriotes · Sainte-Julie, QC</p>
-    </article>
-    <article class="entry">
-      <div class="entry-head">
-        <h3 class="entry-title">Évaluation comparative des études effectuées hors du Québec</h3>
-        <span class="entry-when">2012</span>
-      </div>
-      <p class="entry-org">Ministère de l'Immigration et des Communautés culturelles (Québec)</p>
-    </article>
-  </section>
-
-  <section>
-    <h2>Preuves</h2>
-    <div class="proof">
-      <p class="marker">Vérifiable</p>
-      <p><strong>TwisterLab</strong> — homelab de 3 machines. Orchestration d'agents vérifiée par empreinte SHA-256 : le résultat de chaque exécution est attesté par un tiers, pas déclaré par l'agent lui-même.</p>
-      <p class="linkline"><a href="https://github.com/youneselfakir0/homelab-twisterlab">github.com/youneselfakir0/homelab-twisterlab</a></p>
     </div>
   </section>
 
-  <section>
-    <h2>Disponibilité</h2>
-    <p class="availability">Postes <strong>N2 / senior en support et systèmes</strong>, en PME et en MSP. <strong>Montréal et Rive-Sud</strong>. Hybride ou télétravail.</p>
-    <div class="langues">
-      <span><b>Français</b> · langue maternelle</span>
-      <span><b>Anglais</b> · professionnel</span>
-    </div>
-  </section>
+  <div class="wrap">
 
+    <section>
+      <h2><span class="idx">02</span>Profil</h2>
+      <p>Technicien en soutien informatique bilingue (français/anglais) fort de plus de 13 ans d'expérience en assistance aux utilisateurs et en gestion des incidents. De novembre 2022 à juin 2025, agent de centre de services senior chez Services partagés Canada, dans un environnement gouvernemental critique fonctionnant 24/7/365.</p>
+      <p>Rigueur opérationnelle, résolution de problèmes et orientation client. Intègre l'IA à sa pratique quotidienne du support (diagnostic, génération de scripts, documentation d'intervention) pour accélérer la résolution des incidents.</p>
+    </section>
+
+    <section>
+      <h2><span class="idx">03</span>Compétences</h2>
+      <dl class="skills">
+        <dt>Support et incidents</dt>
+        <dd>Support bilingue (fr/en), résolution d'incidents N1/N2, billetterie, respect des SLA, escalade et documentation, environnements 24/7/365.</dd>
+        <dt>Systèmes</dt>
+        <dd>Windows et Windows Server, Active Directory, DNS, stratégies de groupe (GPO), Linux, macOS.</dd>
+        <dt>Collaboration</dt>
+        <dd>Microsoft 365 et Exchange (messagerie, calendriers, partage de fichiers, gestion des accès et des identités).</dd>
+        <dt>Réseaux</dt>
+        <dd>TCP/IP, DNS, VPN, connectivité réseau et périphériques d'impression.</dd>
+        <dt>Scripting</dt>
+        <dd>PowerShell et Bash : automatisation des tâches récurrentes et des interventions de support.</dd>
+        <dt>Virtualisation et conteneurs</dt>
+        <dd>Machines virtuelles et services conteneurisés, en laboratoire comme en production.</dd>
+        <dt>Supervision et documentation</dt>
+        <dd>Suivi d'incidents, rédaction et mise à jour de la documentation technique d'intervention.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2><span class="idx">04</span>Expérience</h2>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3 class="entry-title">Agent de centre de services — Senior (N1/N2)</h3>
+          <span class="entry-when">nov. 2022 — juin 2025</span>
+        </div>
+        <p class="entry-org">Newfound Recruiting — mandat Services partagés Canada (gouvernement fédéral) · Montréal, QC</p>
+        <ul>
+          <li>Soutien technique bilingue (français/anglais) dans un centre de services gouvernemental à haute disponibilité, en fonctionnement continu 24/7/365.</li>
+          <li>Traitement et résolution d'incidents (postes de travail, gestion des accès, Microsoft 365, VPN, matériel et connectivité) dans le strict respect des SLA et des objectifs de performance.</li>
+          <li>Application rigoureuse des procédures opérationnelles et des politiques de sécurité informatique en contexte gouvernemental critique.</li>
+          <li>Rédaction et mise à jour de la documentation technique d'intervention, au bénéfice de la continuité des opérations de l'équipe.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3 class="entry-title">Technicien informatique — mandats indépendants</h3>
+          <span class="entry-when">2011 — 2021</span>
+        </div>
+        <p class="entry-org">PME et particuliers · Montréal, QC</p>
+        <ul>
+          <li>Installation, configuration, optimisation et maintien du parc informatique (postes Windows, macOS et Linux) d'une clientèle diversifiée de PME et de particuliers.</li>
+          <li>Diagnostic et résolution des pannes matérielles, logicielles et réseau, contribuant à réduire les temps d'interruption des clients.</li>
+          <li>Déploiement de postes de travail, configuration des équipements réseau et d'impression, soutien technique à distance et sur site.</li>
+          <li>Formation des utilisateurs aux bonnes pratiques de sécurité ; gestion des sauvegardes et de la récupération de données.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3 class="entry-title">Agent de soutien technique</h3>
+          <span class="entry-when">2014 — 2015</span>
+        </div>
+        <p class="entry-org">Bell Affaires / Atelka Inc. · Saint-Jean-sur-Richelieu, QC</p>
+        <ul>
+          <li>Soutien technique téléphonique auprès de la clientèle d'affaires pour les services Internet et de téléphonie.</li>
+          <li>Diagnostic à distance des défaillances de connectivité réseau et accompagnement des utilisateurs, étape par étape, jusqu'à la résolution.</li>
+          <li>Configuration des équipements d'accès (modems, routeurs) et escalade des dossiers complexes vers les niveaux spécialisés.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2><span class="idx">05</span>Formation</h2>
+      <article class="entry">
+        <div class="entry-head">
+          <h3 class="entry-title">DEP en soutien informatique</h3>
+          <span class="entry-when">2014</span>
+        </div>
+        <p class="entry-org">Centre de formation professionnelle des Patriotes · Sainte-Julie, QC</p>
+      </article>
+      <article class="entry">
+        <div class="entry-head">
+          <h3 class="entry-title">Évaluation comparative des études effectuées hors du Québec</h3>
+          <span class="entry-when">2012</span>
+        </div>
+        <p class="entry-org">Ministère de l'Immigration et des Communautés culturelles (Québec)</p>
+      </article>
+    </section>
+
+    <section>
+      <h2><span class="idx">06</span>Preuves</h2>
+      <div class="proof">
+        <p class="marker">Vérifiable</p>
+        <p><strong>TwisterLab</strong> — homelab de 3 machines. Orchestration d'agents vérifiée par empreinte SHA-256 : le résultat de chaque exécution est attesté par un tiers, pas déclaré par l'agent lui-même.</p>
+        <p class="linkline"><a href="https://github.com/youneselfakir0/homelab-twisterlab">github.com/youneselfakir0/homelab-twisterlab</a></p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="idx">07</span>Disponibilité</h2>
+      <p class="availability">Postes <strong>N2 / senior en support et systèmes</strong>, en PME et en MSP. <strong>Montréal et Rive-Sud</strong>. Hybride ou télétravail.</p>
+      <div class="langues">
+        <span><b>Français</b> · langue maternelle</span>
+        <span><b>Anglais</b> · professionnel</span>
+      </div>
+    </section>
+
+  </div>
 </main>
 
 <footer>
