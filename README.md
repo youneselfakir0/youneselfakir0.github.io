@@ -78,5 +78,5 @@ GitHub Pages republie automatiquement depuis la branche `main`, à la racine.
 
 ## Preuve
 
-Le homelab TwisterLab sert de preuve de travail :
-[github.com/youneselfakir0/homelab-twisterlab](https://github.com/youneselfakir0/homelab-twisterlab)
+Le homelab local sert de preuve de travail :
+[homelabtwisterlab.github.io/homelab-twisterlab-public/](https://homelabtwisterlab.github.io/homelab-twisterlab-public/)
